@@ -1,9 +1,9 @@
 # Site settings
 # Enter your own credentials here
-title: "My Blog"
-email: you@somewhere.com
+title: "OFET Structure -> Properties"
+email: imperssonator@gmail.com
 description: >
-  Tell us about your site
+  This site will tell you all about everything.
 baseurl: "/research-pages" # replace ``/research-pages`` with the name of the parents repository
 url: "Materials-Informatics-Lab.github.io" # replate ``Materials-Informatics-Lab`` with your Github username
 twitter_username: twitterhandle
@@ -18,7 +18,7 @@ paginate: 5
 
 
 gh:
-  user: Materials-Informatics-Lab
-  repo: research-pages
+  user: Imperssonator
+  repo: MIC-OFET-Processing
   # Branch hosting Github pages
   branch: gh-pages
