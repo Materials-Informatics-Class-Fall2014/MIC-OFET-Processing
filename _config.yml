@@ -4,8 +4,8 @@ title: "OFET Structure -> Properties"
 email: imperssonator@gmail.com
 description: >
   This site will tell you all about everything.
-baseurl: "/research-pages" # replace ``/research-pages`` with the name of the parents repository
-url: "Materials-Informatics-Lab.github.io" # replate ``Materials-Informatics-Lab`` with your Github username
+baseurl: "/MIC-OFET-Processing" # replace ``/research-pages`` with the name of the parents repository
+url: "Imperssonator.github.io" # replate ``Materials-Informatics-Lab`` with your Github username
 twitter_username: twitterhandle
 disqus: tonyfast
 
