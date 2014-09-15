@@ -1,0 +1,20 @@
+# An example data file pointing to external resources for the data
+description: >
+  Raw AFM of P3HT nanofibers from Dalsu Choi at GA Tech.
+# Intro to project
+gist: https://gist.github.com/Imperssonator/7b46d58c0796a9a2a84d
+tags:
+  - AFM2MOB
+  - Something
+units:
+  - x: 1.852 #nm/pixel
+    y: 1.852 #microns/pixel
+# Images avaiable on Flickr
+flickr:
+  view: https://www.flickr.com/photos/127699624@N02/15053282380/in/set-72157647191955619
+  # parent set
+  set: https://www.flickr.com/photos/127699624@N02/sets/72157647191955619
+author:
+  - name: Nils Persson
+  - email: npersson3@gatech.edu
+thumb: https://farm6.staticflickr.com/5571/15053282380_c17a5b9865_s.jpg
