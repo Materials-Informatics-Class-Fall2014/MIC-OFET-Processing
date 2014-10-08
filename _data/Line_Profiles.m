@@ -32,11 +32,32 @@ clc
 % [DH1 DV1 AH1 AV1] = LineProf(C3clean,C3side);
 
 % 5 minute UV bath
-C5m = imread('Cha_5min.png');
+C5m = imread('Cha_3.png');
 figure
 imshow(C5m)
 C5mside = 2E-6;
 C5mgray = rgb2gray(C5m);
+figure
+imshow(C5mgray)
+C5mbw = AUTO_THRESH(C5mgray);
+
+break
+% thresh = graythresh(C5mgray);
+% THRESH = multithresh(C5mgray,3);
+% C5mQuant = imquantize(C5mgray,THRESH);
+% figure
+% imshow(C5mQuant)
+% C5mOtsu = im2bw(C5mgray,thresh);
+% figure
+% imshow(C5mOtsu)
+% 
+% 
+% 
+% figure
+% imhist(C5mgray)
+% 
+% break
+
 C5mbw = im2bw(C5mgray,0.28);
 figure
 imshow(C5mbw)
@@ -44,11 +65,20 @@ C5mclean = bwareaopen(C5mbw,40);
 figure
 imshow(C5mclean)
 figure
-C5mseg = Classify_Fibers(C5mclean);
-figure
-imshow(C5mseg)
-[DH5 DV5 AH5 AV5] = LineProf(C5mclean,C5mside);
+% C5mseg = Classify_Fibers(C5mclean);
+% figure
+% imshow(C5mseg)
+% [DH5 DV5 AH5 AV5] = LineProf(C5mclean,C5mside);
 
+[G1,G2,gabout1,gabout2] = gaborfilter2(C5mclean,10,2,0,0);
+figure
+imshow(gabout1)
+figure
+imshow(gabout2)
+figure
+imshow(G1)
+figure
+imshow(G2)
 %% Simulated morphologies
 % 
 % DalHor = imread('side_side.jpg');
