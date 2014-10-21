@@ -8,18 +8,31 @@
 # of the post in this file
 layout: post
 # title of your post
-title:  "Presentation3"
+title:  "Swift Stack with Python"
 # the author of the post's github user name
-author: dnazarian 
+author: imperssonator 
 # Data and time of the post
-date:   2014-10-21 11:28:00 AM
+date:   2014-10-21 18:17:28
 
 # Optional fields
 categories:
 tags:
+notebook: >
+  http://nbviewer.ipython.org/github/Materials-Informatics-Lab/Materials-Informatics-Lab.github.io/blob/master/snippets/Sharing%20Plot.ly%20Figures%20and%20Data.ipynb
 ---
 
-# Swift Stack with Python
 
 The following script will let you access all of the files in a SwiftStack container using your login credentials:
 
+{% capture nb %}
+
+{% highlight html %}
+{% raw %}
+{% include notebook.html url='http://notebook.url' %}
+{% endraw %}
+{% endhighlight %}
+{% endcapture %}
+
+{{nb}}
+
+{% include notebook.html url=page.notebook %}
