@@ -27,22 +27,28 @@ tags:
 
 #Information from AFM Image That Matters
 
-![AFM](https://lh3.googleusercontent.com/-XLh4YvT_WaQ/VAaAmALDQUI/AAAAAAAAAX4/BuzdJgYV6EI/w2228-h1188-no/Figure%2B2b.jpg)
-
 1. Identifying fibers
-2. Orientation
+2. Fibe orientation
 3. Degree of crystallinity   
+
+![AFM](https://lh3.googleusercontent.com/-XLh4YvT_WaQ/VAaAmALDQUI/AAAAAAAAAX4/BuzdJgYV6EI/w2228-h1188-no/Figure%2B2b.jpg)
 
 ##Thresholding to 1. Identify fibers 
 
 The thresholding post discusses our algorithm for finding the perfect thesholding value to isolate individual fibers. The following image shows a breif example of our work. 
 ![thresholding algorithm vizulaized](https://farm6.staticflickr.com/5616/15408121609_eece533bef_b.jpg)
 
-The result of such thresholding will be used to identify each fiber as a connected component. This can be used to find individual fiber oientation. 
+The result of such thresholding will be used to identify each fiber as a connected component. This can be used to find individual fiber orientation. 
 
-##Orientation 
+##Ellipse fitting to find 2. Fiber orientation 
 
-##Peak fitting to find  3. degree of crystallinity 
+[regionprops](http://www.mathworks.com/help/images/ref/regionprops.html#bqkf8ik) was used to fit an ellipse to each connected component obtained from the previouse thresholding to determine the orientation of that fiber. 
+
+The following example is a proof of concept of finding orientations using regionprops. Of the AFM image(left) , we selected to only 5 components(center). The orientations of the components were acuratly calcualted and are displayed on the right.
+![Ex. of oientation finding](https://farm6.staticflickr.com/5603/15594371682_1d8daa5de0_b.jpg)
+
+
+##Peak fitting to find  3. Degree of crystallinity 
 
 Expeimentaing with SciPy in Python. (Would prefer to use python for smooth work flow SwiftStack) 
 
