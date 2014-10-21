@@ -1,4 +1,4 @@
-function out = AUTO_THRESH(grayim)
+function out = AUTO_THRESH(impath)
 %% Auto-thresholding for fiber segmentation
 % The ideal threshold value for creating segmented AFM images of P3HT
 % nanofibers has been observed to be just before the point where the entire
@@ -6,6 +6,13 @@ function out = AUTO_THRESH(grayim)
 % number of unique, fully connected objects in the image drops
 % precipitously. We are looking specifically for the threshold that
 % produces the maximum number of connected objects.
+
+IMG = imread(impath);
+figure
+imshow(IMG)
+grayim = rgb2gray(IMG);
+figure
+imshow(grayim)
 
 points = 100;
 THRESH = linspace(0,1,points);
