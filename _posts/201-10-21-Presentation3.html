@@ -28,24 +28,38 @@ tags:
 #Information from AFM Image That Matters
 
 1. Identifying fibers
-2. Fibe orientation
+2. Fiber orientation
 3. Degree of crystallinity   
 
 ![AFM](https://lh3.googleusercontent.com/-XLh4YvT_WaQ/VAaAmALDQUI/AAAAAAAAAX4/BuzdJgYV6EI/w2228-h1188-no/Figure%2B2b.jpg)
 
 ##Thresholding to 1. Identify fibers 
 
-The thresholding post discusses our algorithm for finding the perfect thesholding value to isolate individual fibers. The following image shows a breif example of our work. 
+The thresholding post discusses our algorithm for finding the perfect thresholding value to isolate individual fibers. The following image shows a brief example of our work. 
 ![thresholding algorithm vizulaized](https://farm6.staticflickr.com/5616/15408121609_eece533bef_b.jpg)
 
 The result of such thresholding will be used to identify each fiber as a connected component. This can be used to find individual fiber orientation. 
 
 ##Ellipse fitting to find 2. Fiber orientation 
 
-[regionprops](http://www.mathworks.com/help/images/ref/regionprops.html#bqkf8ik) was used to fit an ellipse to each connected component obtained from the previouse thresholding to determine the orientation of that fiber. 
+[regionprops](http://www.mathworks.com/help/images/ref/regionprops.html#bqkf8ik) was used to fit an ellipse to each connected component obtained from the previous thresholding to determine the orientation of that fiber. 
 
-The following example is a proof of concept of finding orientations using regionprops. Of the AFM image(left) , we selected to only 5 components(center). The orientations of the components were acuratly calcualted and are displayed on the right.
-![Ex. of oientation finding](https://farm6.staticflickr.com/5603/15594371682_1d8daa5de0_b.jpg)
+The following example is a proof of concept of finding orientations using regionprops. Of the AFM image(left) , we selected to only 5 components(center). The orientations of the components were accurately calculated and are displayed on the right.
+![Ex. of orientation finding](https://farm6.staticflickr.com/5603/15594371682_1d8daa5de0_b.jpg)
+
+The orientation detection along with thresholding is displayed below. Each pixel in the image identified as a fiber can be assigned one of 8 orientations. 
+
+![Full process](https://farm4.staticflickr.com/3939/14974265374_329dc65684_b.jpg)
+
+###Issues
+Overlapping fiber, especially those in completely different directions will contaminate the orientation calculation. 
+The image below shows a case where the ellipse fit to the connected component in green will chose the green vector to calculate the orientation of the fiber. This orientation is incorrect for both fibers. 
+
+![incorrect orientation](https://farm6.staticflickr.com/5609/14974332554_0d084b46e6_o.png)
+
+####Possible solution: 
+
+Calculate the eccentricity of the ellipse fit the connected component and if the ellipse cannot possible belong to a single fiber, remove from orientation calculation. Use some other method to perform some sort of local orientation calculation. 
 
 
 ##Peak fitting to find  3. Degree of crystallinity 
