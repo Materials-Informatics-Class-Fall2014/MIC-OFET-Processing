@@ -1,22 +1,25 @@
-# Yo everybody
+---
+# Content at the top of these posts are called YAML Front Matter.
+# YAML Front Matter and variable-like values that can easily used inside the
+# page content later on.  Control expressions like ``for`` & ``if`` can be used also.
+
+# layout is a required variable
+# post corresponds to ``_includes/post.html`` which is a template to interpret the
+# of the post in this file
+layout: post
+# title of your post
+title:  "Presentation3"
+# the author of the post's github user name
+author: dnazarian 
+# Data and time of the post
+date:   2014-10-21 11:28:00 AM
+
+# Optional fields
+categories:
+tags:
+---
+
+# Swift Stack with Python
 
 The following script will let you access all of the files in a SwiftStack container using your login credentials:
-
-from swiftclient import Connection
-
-authURL = 'https://swift.storm.gatech.edu/auth/v1.0'
-mainURL = 'https://npersson3@swift.storm.gatech.edu'
-user = 'npersson3'
-PW = 'SmallBowel=20ft'
-container='img'
-
-swift = Connection(authurl=authURL,user=user,key=PW,insecure=True)
-
-(headers,containers)=swift.get_account()
-
-print(headers)
-print(containers)
-
-cont1=swift.get_container(container)
-print(cont1)
 
