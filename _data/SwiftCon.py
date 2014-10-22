@@ -21,5 +21,13 @@ print(headers)
 print(containers)
 
 cont1=swift.get_container(container)
-print(cont1)
+#print(cont1)
 
+files = cont1[1]
+
+for ii in files:
+    filename=ii['name']
+    print(filename)
+    # now you can iterate any number of operations over your cloud-stored images
+    # get the image, do analysis, then save the results of the analysis back on swiftstack
+    
