@@ -45,8 +45,34 @@ For each of the 16 stuctures:
 2. Applied the [SpatialStatsFFt](https://github.com/tonyfast/SpatialStatisticsFFT.git) Matlab function. 
 ![SSFFT Data Stoage](https://farm9.staticflickr.com/8646/15533238970_550d7f6f4c_b.jpg)
 
-3.  
+An exapmle of the above AFM image autocorrelation result: with a reasonable volume fraction of ~0.32
+![FFT](https://farm8.staticflickr.com/7555/15719856992_0a773b567e_o.jpg)
 
+3.  Perform PCA using matlab functions. 
+
+An example of our sanity check: 
 ![daf](https://mail.google.com/mail/u/0/?ui=2&ik=7651eb4c70&view=fimg&th=1498081fadc82920&attid=0.5&disp=emb&attbid=ANGjdJ-GIuozxe9jHPlvW_X50Yq2mVsEnvsoK-Fs2hP35ScstgWbTRrq_TjsoDY-NYBbnQ0EyuJ9IYEJjy5iX-A9SalZWhgXb006C8HeqfwnYVkD0YJyWh03hGSfhvA&sz=w1600-h1000&ats=1415200254746&rm=1498081fadc82920&zw&atsh=1)
 
+Digging into the data a little bit:
+Here are the coefficients of the 1st PC 
+![PCA1 scores](https://mail.google.com/mail/u/0/?ui=2&ik=7651eb4c70&view=fimg&th=1498081fadc82920&attid=0.6&disp=emb&attbid=ANGjdJ_2HdAwr1tusMVoKpcAd2jXddVK8f8PXOGdvEUk66ZaAVAZn3_XLn6OLXspX9iIKDMbkMiouFUiqc6YDB06VgBL1ksHG3vPKfBo5B1udf7lZW4E7zap5a58dMA&sz=w1600-h1000&ats=1415207686932&rm=1498081fadc82920&zw&atsh=1)
+4. Perform perliminary analysis of electron mobility and 1st PC scores. 
 
+![PC vs mobility](https://mail.google.com/mail/u/0/?ui=2&ik=7651eb4c70&view=fimg&th=1498081fadc82920&attid=0.4&disp=emb&attbid=ANGjdJ-bNPO14q8-B3OLZTCxP49LO0o9ZBTgxuafsLsbw9LMnKPSdslXVR93wHvfKT4ECuKkXMxnfJyMZMumLVLE9BkKAJSkAis3X5XYUG652jAVvqg52b3fNaFc8Rg&sz=w1600-h1000&ats=1415207686932&rm=1498081fadc82920&zw&atsh=1)
+
+
+#What have we learned?
+- Longer and wider fibers are favorable for charge transport
+- More fibers are not necessarily a good thing if they are small and siconnected 
+
+#Why this matters?
+- co-solvent addition is scalable processing method to achieve better charge transport 
+- we should study how and why fibers space themselves out: what is happening in teh space between? can we achieve morphologies that explore this domain?
+
+![between fibers](https://mail.google.com/mail/u/0/?ui=2&ik=7651eb4c70&view=fimg&th=1498081fadc82920&attid=0.8&disp=emb&attbid=ANGjdJ8dGLWrZUvSAiYdbTBJdBYk5LGi__Y5ROk14NtluW4ku3Bcdv9eN6kTny-zDAp6iy4s4kphc9auJPbVaUXOpNtYfNMeWBw3WmNM_Ia3QVr2AeJL6SH7oolD4GY&sz=w1600-h1000&ats=1415207686932&rm=1498081fadc82920&zw&atsh=1)
+
+#Still in progress and future work 
+
+- We have a method for obtaining orientations but need to incorparate into the spatial statistics and PCA. 
+- Possibly incoorparate degree of crytallinity.
+- We have incorparated UV-Vis absorbance spectra in the PCA but need to better undestand this. 
