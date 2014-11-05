@@ -1,0 +1,52 @@
+---
+# Content at the top of these posts are called YAML Front Matter.
+# YAML Front Matter and variable-like values that can easily used inside the
+# page content later on.  Control expressions like ``for`` & ``if`` can be used also.
+
+# layout is a required variable
+# post corresponds to ``_includes/post.html`` which is a template to interpret the
+# of the post in this file
+layout: post
+# title of your post
+title:  "Initial Structure Property Relationship"
+# the author of the post's github user name
+author: dnazarian 
+# Data and time of the post
+date:   2014-11-5 11:28:00 AM
+
+# Optional fields
+categories:
+tags: 
+---
+
+#Long Term Goals 
+- Establish a data structure for the quantification of Poly-3-hexylthiophene (P3HT) thin film morphology
+- Establish a data structure for the quantification of Poly-3-hexylthiophene (P3HT) thin film morphology
+
+![Proposed Microstructure](https://lh4.googleusercontent.com/-jtAaqbnlg7g/VAaGB7wOzaI/AAAAAAAAAY0/49Yp7dAWFl4/w2226-h690-no/Noriega%2BTie%2BChains.png)
+
+#Source of Data 
+1. AFM <-- Structure
+![AFM](https://lh3.googleusercontent.com/-XLh4YvT_WaQ/VAaAmALDQUI/AAAAAAAAAX4/BuzdJgYV6EI/w2228-h1188-no/Figure%2B2b.jpg)
+2. UV-Vis absorbance spectra
+3. Electrron Mobility <-- Property 
+
+#Thresholding to 1. Identify fibers 
+
+The thresholding post discusses our algorithm for finding the perfect thresholding value to isolate individual fibers. The following image shows a brief example of our work. 
+![thresholding algorithm vizulaized](https://farm6.staticflickr.com/5616/15408121609_eece533bef_b.jpg)
+
+#Spatial Statistics 
+##Work Flow:
+For each of the 16 stuctures:
+
+1. Created a binary image with thresholding (amorphous or crystaline fiber...no orientation information) 
+
+2. Applied the [SpatialStatsFFt](https://github.com/tonyfast/SpatialStatisticsFFT.git) Matlab function. 
+![SSFFT Data Stoage](https://farm9.staticflickr.com/8646/15533238970_550d7f6f4c_b.jpg)
+
+3.  
+
+![daf](https://mail.google.com/mail/u/0/?ui=2&ik=7651eb4c70&view=fimg&th=1498081fadc82920&attid=0.5&disp=emb&attbid=ANGjdJ-GIuozxe9jHPlvW_X50Yq2mVsEnvsoK-Fs2hP35ScstgWbTRrq_TjsoDY-NYBbnQ0EyuJ9IYEJjy5iX-A9SalZWhgXb006C8HeqfwnYVkD0YJyWh03hGSfhvA&sz=w1600-h1000&ats=1415200254746&rm=1498081fadc82920&zw&atsh=1)
+
+
