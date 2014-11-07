@@ -8,11 +8,12 @@ function out = AUTO_THRESH(impath)
 % produces the maximum number of connected objects.
 
 IMG = imread(impath);
-figure
-imshow(IMG)
 grayim = rgb2gray(IMG);
-figure
-imshow(grayim)
+
+% figure
+% imshow(IMG)
+% figure
+% imshow(grayim)
 
 points = 100;
 THRESH = linspace(0,1,points);
@@ -26,17 +27,20 @@ for i = 1:points
 end
 
 best_thresh = find_plateau(Objects);
-disp('Best threshold was:')
-disp(best_thresh)
+% disp('Best threshold was:')
+% disp(best_thresh)
 out = im2bw(grayim,best_thresh);
-figure
-imshow(out);
+% figure
+% imshow(out);
 
-out=Objects;
+af = sum(sum(out))/numel(out);
+disp(af)
 
-figure
-plot(THRESH,Objects,'-b')
-title('Number of unique objects vs. Threshold value')
+% out=Objects;
+% 
+% figure
+% plot(THRESH,Objects,'-b')
+% title('Number of unique objects vs. Threshold value')
 
 end
 

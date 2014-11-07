@@ -1,12 +1,8 @@
 % Download and Image from the web and fit the phases
 
-clear all
-close all
-clc
 
-url = 'https://flic.kr/p/oX46Cu';
 
-IMG = imread('15%_2min_2.tif');
+IMG = imread('15%_2min.tif');
 
 IMGR = rgb2gray(IMG);
 
@@ -18,7 +14,7 @@ imshow(IMGR);
 whos
 
 figure
-[FitResults,LowestError,BestStart,xi,yi,BootResults] = peakfit([X,COUNTS],0,0,3);
+[FitResults,LowestError,BestStart,xi,yi,BootResults] = peakfit([X,COUNTS],0,0,2);
 
 figure
 plot(xi,yi,'-b')
