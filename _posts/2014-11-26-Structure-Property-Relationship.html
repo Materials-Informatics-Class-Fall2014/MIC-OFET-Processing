@@ -1,0 +1,72 @@
+---
+# Content at the top of these posts are called YAML Front Matter.
+# YAML Front Matter and variable-like values that can easily used inside the
+# page content later on.  Control expressions like ``for`` & ``if`` can be used also.
+
+# layout is a required variable
+# post corresponds to ``_includes/post.html`` which is a template to interpret the
+# of the post in this file
+layout: post
+# title of your post
+title:  "PCA of Spatial Statistics Including Orientation"
+# the author of the post's github user name
+author: dnazarian 
+# Data and time of the post
+date:   2014-11-26 
+
+# Optional fields
+categories:
+tags: 
+---
+#Long Term Goals 
+- Establish a data structure for the quantification of Poly-3-hexylthiophene (P3HT) thin film morphology
+
+#Determine Orientation
+
+See [An algorithm for segmentation of images containing non-overlapping fibrilar domains](http://imperssonator.github.io/MIC-OFET-Processing/2014/11/12/Orientation.html)
+Bin the angles like so:
+        Bin 1: 90º or -90º .. basically straight up or down
+        Bin 2: -45º
+        Bin 3: 0º horizontal
+        Bin 4: 45º
+        Bin 5: amorphous
+        
+#Spatial Statistics 
+
+There are five micro states, a 5x5 matrix of spatial stats. 
+
+Began with independent stats, so the fist four elements in teh first coloumn. 
+
+- 1-1 autocorrelation
+- 1-2 cross correlation
+- 1-3 cross
+- 1-4 cross
+
+#PCA
+
+Autocorrelation of 90 degree fiber in the PC1
+
+![90 auto](https://farm8.staticflickr.com/7518/15262801434_b167075320_o.png)
+
+Cross correlation of 90 and 45 degrees in PC1
+
+![90- 45](https://farm8.staticflickr.com/7507/15699037739_940797e4f4_o.png)
+
+Cross correlation of 90 and 0 degrees in PC1
+
+![90-0](https://farm8.staticflickr.com/7474/15884426432_56a7f4fc1c_o.png)
+
+Autocorrelation of 90 degree fiber in the PC2
+
+![90-90 PC2](https://farm8.staticflickr.com/7521/15699127429_ff6f31cf1d_o.png)
+
+#PCs vs Mobility 
+
+We see that the structure with the highest PC1 score has highest mobility. 
+
+![mob-pc1](https://farm8.staticflickr.com/7468/15859261336_3469fdd559_o.png)
+
+#PC Space
+
+![pc state](https://farm8.staticflickr.com/7557/15884529122_f6fc7e9728_b.jpg)
+
