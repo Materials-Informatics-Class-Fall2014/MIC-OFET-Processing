@@ -24,7 +24,7 @@ Label = zeros(m,n);
 
 %% Fiber Confidence parameters
 
-minarea = 250;
+minarea = 200;
 maxarea = 20000;
 
 
