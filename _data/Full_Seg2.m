@@ -4,8 +4,23 @@ function [SEGfile,ORIENT,MAXCONF] = Full_Seg2(filepath)
 
 % Full segmentation takes a grayscale image IM
 % 
-% It returns SEG, a segmented image with each pixel assigned an orientation
-% and a degree of crystallinity.
+% It returns ORIENT, where each element of ORIENT is the expected
+% orientation of the fiber that pixel is in
+%
+% And, it returns MAXCONF, which indicates how confident it was that each
+% pixel was in a fiber of orientation found in the corresponding element of
+% ORIENT
+% 
+% If an element of MAXCONF is 0, it means that pixel is amorphous.
+% Amorphous pixels in ORIENT also show as 0 angle, so this needs to be
+% addressed by the user after the code is run, typically with the following
+% code:
+
+% SEG = ORIENT + (MAXCONF==0).*(-180)
+
+% This creates SEG, where fibrilar pixels have their orientation, and
+% amorphous pixels are shown with an angle of -180. This makes pcolor plots
+% look good. This is done in the final lines of the code.
 
 %% Fiber Confidence parameters
 % Change min area to exclude small regions from being considered "fibers"
@@ -114,7 +129,9 @@ save(SEGfile,'-v7.3')
 figure
 imshow(IM)
 
-orientplot(ORIENT,MAXCONF);
+figure
+pcolor(ORIENT + (MAXCONF==0).*-180);
+hc=colorbar; shading flat; axis equal; set(gca,'YDir','reverse');
 
 end
     
