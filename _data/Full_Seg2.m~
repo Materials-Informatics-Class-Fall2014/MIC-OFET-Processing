@@ -2,27 +2,17 @@ function [SEGfile,ORIENT,MAXCONF] = Full_Seg2(filepath)
 
 %% Full Seg
 
-% Full segmentation takes a grayscale image IM
+% Full segmentation takes a grayscale image IM, and eccentricity and area
+% cutoffs ecc and area as inputs
 % 
 % It returns SEG, a segmented image with each pixel assigned an orientation
 % and a degree of crystallinity.
 
 %% Fiber Confidence parameters
 % Change min area to exclude small regions from being considered "fibers"
-% change max area to reflect how big you expect your largest fiber to be.
-% This way gigantic, image-spanning connected components don't register as
-% fibers.
-% These values are in pixels.
-
+% change max area to reflect how big you expect your largest fiber to be
 minarea = 200;
 maxarea = 20000;
-
-%% Threshold Bounds
-% You probably don't want to run from 0 to 100%, so use these bounds to
-% contain the algorithm:
-
-Minthresh = 40;
-Maxthresh = 60;
 
 %% Rest of algo
 
@@ -41,10 +31,9 @@ Orient = zeros(m,n,100);
 Label = zeros(m,n);
 
 
-%% Iterate over thresholds... 
+%% 
 
-
-parfor ii = Minthresh:Maxthresh
+parfor ii = 40:60
 %     disp(ii)
     level = ii/100;
 
