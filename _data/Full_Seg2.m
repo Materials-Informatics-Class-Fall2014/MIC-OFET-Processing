@@ -2,7 +2,7 @@ function [SEGfile,ORIENT,MAXCONF] = Full_Seg2(filepath)
 
 %% Full Seg
 
-% Full segmentation takes a grayscale image IM
+% Full segmentation takes a filepath to an RGB image at 'filepath'
 % 
 % It returns ORIENT, where each element of ORIENT is the expected
 % orientation of the fiber that pixel is in
