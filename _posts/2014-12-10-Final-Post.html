@@ -86,7 +86,8 @@ In our first attempt at image segmentation, we applied a single threshold to gre
 We then performed spatial statistics on the black and white segmented images and validated our understanding of the spatial statistics algorithm provided to the class by Tony Fast. 
 Details about this initial investigation can be followed at the [Spatial Statistics Post](http://imperssonator.github.io/MIC-OFET-Processing/2014/09/29/Spatial-Statistics.html) 
 
-This method was not ideal because it left 
+This method was not ideal because it left room for human error and was not an efficeint method for a large dataset. 
+
 ##Single Value Threshold Based on Derivative of Number of Connected Components. 
 In our second attempt at image segmentation, we developed a method to systematically choose an optimal threshold value. The algorithm applied a wide range of threshold values to a single AFM images and for each threshold image, computed the number of connected components (connected components representing individual fibers). As the threshold value was increased, if the number of connected components plateaued, the threshold value corresponding to the plateau was chosen. 
 The following image shows a brief example of our work.
@@ -94,4 +95,6 @@ The following image shows a brief example of our work.
 ![Thresholding](https://farm6.staticflickr.com/5616/15408121609_eece533bef_b.jpg)
 For details on the algorithm, see the [Thresholding Post](http://imperssonator.github.io/MIC-OFET-Processing/2014/10/08/Thresholding.html). 
 
+Although an improvment on the first thresholding effort, this algorithm still used a single threshold value for each image. A single value threshold method fails because the pixle intensities associated with a fiber vary even across single AFM image.  
 
+##Determining Fiber Orientaion 
