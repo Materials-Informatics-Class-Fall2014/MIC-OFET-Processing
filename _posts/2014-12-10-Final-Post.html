@@ -115,3 +115,25 @@ To calculate these matracies, for each pixle, if the pixle was apart of a connec
 This portion of the algorithm is summerized in the figures below.
 ![orientation algo1](https://farm8.staticflickr.com/7564/15805516720_d517bdaf26_b.jpg)
 ![orientation algo2](https://farm8.staticflickr.com/7541/15990800091_a4ca49f3c9_b.jpg)
+
+Next the algorithm finds the maximum confidence across all thresholds and takes their corresponding angles.
+
+![max confidence](https://farm8.staticflickr.com/7517/15805399128_8e8dc63f79_b.jpg)
+
+This algorithm allows us to identify individual fibers ans their their corresponding orientation as shown below:
+![orientation](https://farm8.staticflickr.com/7517/15994700255_6e68515511_b.jpg)
+Here the dark blue represents the amorphous phase. 
+
+The algorithm works even for excessivly noisy images such as:
+![noisy ex](https://farm8.staticflickr.com/7504/15808990007_3217c39141_b.jpg)
+
+The final result can be used to determine usefull features of the microstructure such as average fiber length. 
+Other informative insights can be gained from visulization of fiber orientation. For example, the image below shows that fibers tend to form in clumps of 3 or four and have long range order.
+![clumping img](https://farm8.staticflickr.com/7533/15992780165_8137b9e2fd_b.jpg)
+
+#Spatial Statistics 
+
+
+
+
+http://imperssonator.github.io/MIC-OFET-Processing/2014/11/12/Orientation.html
