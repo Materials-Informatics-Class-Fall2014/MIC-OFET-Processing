@@ -86,7 +86,7 @@ In our first attempt at image segmentation, we applied a single threshold to gre
 We then performed spatial statistics on the black and white segmented images and validated our understanding of the spatial statistics algorithm provided to the class by Tony Fast. 
 Details about this initial investigation can be followed at the [Spatial Statistics Post](http://imperssonator.github.io/MIC-OFET-Processing/2014/09/29/Spatial-Statistics.html) 
 
-This method was not ideal because it left room for human error and was not an efficeint method for a large dataset. 
+This method was not ideal because it left room for human error and was not an efficient method for a large dataset. 
 
 ##Single Value Threshold Based on Derivative of Number of Connected Components. 
 In our second attempt at image segmentation, we developed a method to systematically choose an optimal threshold value. The algorithm applied a wide range of threshold values to a single AFM images and for each threshold image, computed the number of connected components (connected components representing individual fibers). As the threshold value was increased, if the number of connected components plateaued, the threshold value corresponding to the plateau was chosen. 
@@ -95,9 +95,9 @@ The following image shows a brief example of our work.
 ![Thresholding](https://farm6.staticflickr.com/5616/15408121609_eece533bef_b.jpg)
 For details on the algorithm, see the [Thresholding Post](http://imperssonator.github.io/MIC-OFET-Processing/2014/10/08/Thresholding.html). 
 
-Although an improvment on the first thresholding effort, this algorithm still used a single threshold value for each image. A single value threshold method fails because the pixle intensities associated with a fiber vary even across single AFM image.  
+Although an improvement on the first thresholding effort, this algorithm still used a single threshold value for each image. A single value threshold method fails because the pixel intensities associated with a fiber vary even across single AFM image.  
 
-##Determining Fiber Orientaion 
+##Determining Fiber Orientation 
 [regionprops](http://www.mathworks.com/help/images/ref/regionprops.html#bqkf8ik) was used to fit an ellipse to each connected component obtained from the previous thresholding to determine the orientation of that fiber.
 To see a proof of concept for this method visit the [Fiber Orientation Post](http://imperssonator.github.io/MIC-OFET-Processing/2014/10/21/Fiber-orientation.html)
 
@@ -105,14 +105,14 @@ Overlapping fiber, especially those in completely different directions will cont
 
 ![orientation issue](https://farm6.staticflickr.com/5609/14974332554_0d084b46e6_o.png)
 
-Is issue is primarily caussed by insuffient thresholding. Attempts were made to separate such connected fiber using tools like [erode](http://www.mathworks.com/help/images/ref/imerode.html) in matlab. We also attempted to identify orientation despite the connectivity using [hough transformations](http://matlab.izmiran.ru/help/toolbox/images/enhanc11.html).Both attempts were unsucsesful.
+Is issue is primarily caused by insufficient thresholding. Attempts were made to separate such connected fiber using tools like [erode](http://www.mathworks.com/help/images/ref/imerode.html) in matlab. We also attempted to identify orientation despite the connectivity using [hough transformations](http://matlab.izmiran.ru/help/toolbox/images/enhanc11.html).Both attempts were unsuccessful.
 
 ##Orientation Informed Fiber Identification 
 The final and most successful attempt at image segmentation combined all lessons learned from previous attempts. 
-The algorithm involves applying a range of threshold values to a single image. For each thresholded image, two matrices were calculated. The values in the matracies corescpond to pixles in the image.
-The first matrix identified the oreintation of the fibers. The second matrix identified the condifence with which the orientations belong to a fibular region. 
-To calculate these matracies, for each pixle, if the pixle was apart of a connected component, regionprops was used to fit an ellipse to the connected component. The vector associated with the major axis of the elipise was used to determine orientation. The eccentricity of the ellipse, defined as the ratio of the major axis to the minor axis, to determine the extent to which the region was fiberlike. The higher the ecentricity, the more likely that the region was a fiber. 
-This portion of the algorithm is summerized in the figures below.
+The algorithm involves applying a range of threshold values to a single image. For each thresholded image, two matrices were calculated. The values in the matrices correspond to pixels in the image.
+The first matrix identified the orientation of the fibers. The second matrix identified the confidence with which the orientations belong to a fibular region. 
+To calculate these matrices, for each pixel, if the pixel was apart of a connected component, regionprops was used to fit an ellipse to the connected component. The vector associated with the major axis of the ellipse was used to determine orientation. The eccentricity of the ellipse, defined as the ratio of the major axis to the minor axis, to determine the extent to which the region was fiber like. The higher the eccentricity, the more likely that the region was a fiber. 
+This portion of the algorithm is summarized in the figures below.
 ![orientation algo1](https://farm8.staticflickr.com/7564/15805516720_d517bdaf26_b.jpg)
 ![orientation algo2](https://farm8.staticflickr.com/7541/15990800091_a4ca49f3c9_b.jpg)
 
@@ -120,18 +120,20 @@ Next the algorithm finds the maximum confidence across all thresholds and takes 
 
 ![max confidence](https://farm8.staticflickr.com/7517/15805399128_8e8dc63f79_b.jpg)
 
-This algorithm allows us to identify individual fibers ans their their corresponding orientation as shown below:
+This algorithm allows us to identify individual fibers and their corresponding orientation as shown below:
 ![orientation](https://farm8.staticflickr.com/7517/15994700255_6e68515511_b.jpg)
 Here the dark blue represents the amorphous phase. 
 
-The algorithm works even for excessivly noisy images such as:
+The algorithm works even for excessively noisy images such as:
 ![noisy ex](https://farm8.staticflickr.com/7504/15808990007_3217c39141_b.jpg)
 
-The final result can be used to determine usefull features of the microstructure such as average fiber length. 
-Other informative insights can be gained from visulization of fiber orientation. For example, the image below shows that fibers tend to form in clumps of 3 or four and have long range order.
+The final result can be used to determine useful features of the microstructure such as average fiber length. 
+Other informative insights can be gained from visualization of fiber orientation. For example, the image below shows that fibers tend to form in clumps of 3 or four and have long range order.
 ![clumping img](https://farm8.staticflickr.com/7533/15992780165_8137b9e2fd_b.jpg)
 
-More details about the algorith can be found at its [original post](http://imperssonator.github.io/MIC-OFET-Processing/2014/11/12/Orientation.html).
+More details about the algorithm can be found at its [original post](http://imperssonator.github.io/MIC-OFET-Processing/2014/11/12/Orientation.html).
+
+This algorithm has also been made available for public use with the help of Tony Fast. 
 
 #Spatial Statistics 
 
@@ -140,22 +142,35 @@ The range of orientations found for the fibers in each microstructure were binne
 ![binning](https://farm9.staticflickr.com/8609/15992779725_dc3a3d37b9_b.jpg)
 ![binning2](https://farm8.staticflickr.com/7530/15807056707_38ba00fb2a_o.png)
 
-With five possible microstates ( 90 degrees, 45 degrees, -45 degrees, 0 degrees, amorphous), the spatial statistics matrix is 5x5, where each matrix value represents a matrix of either autocorrelation or crosscorelation of microstates. 
+With five possible microstates ( 90 degrees, 45 degrees, -45 degrees, 0 degrees, amorphous), the spatial statistics matrix is 5x5, where each matrix value represents a matrix of either autocorrelation or cross correlation of microstates. 
 
 ![ss matrix](https://farm8.staticflickr.com/7473/15370533734_2b11e286c9_b.jpg)
 
 However, only four of the correlations are independent. Therefore, ee generate these four spatial statistic matrices for all of our images. 
 
-this is where we put some spatial stats and analyze it. 
+The plot below shows the spatial statistics for a 90 degree, 90 degree oriented fiber autocorrelation for a single AFM image. 
 
-#Dimentionality Reduction 
+![9090ss](https://farm8.staticflickr.com/7535/15811747290_dbba2d125d_b.jpg)
+
+The highest intensity of 0.08 indicates that for this particular device, the area fraction of vertically oriented fibers is 8%. The green arrows on the AFM image show a few of these vertically oriented fibers. 
+The light blue color on the spatial statistics heat map corresponds to 3%, indicating that 3% of vectors [55,0] have both their head and tail in a fiber. 
+
+The plot below shows the spatial statistics for a 90 degree, 90 degree oriented fiber autocorrelation for a different AFM image.
+
+![9090ssdevice7](https://farm9.staticflickr.com/8619/15998600385_5fafa6ef7b_b.jpg) 
+
+Here we find that area fraction of vertically oriented fibers is similar to the previous device, yet the percent of vectors [55.0] that have both head and tail in a fiber is less, indicating shorter vertically oriented fibers, possibly non-fibrilar. 
+
+Similar analysis can be performed for the cross correlations. 
+
+#Dimensionality Reduction 
 Principle Component Analysis (PCA) was performed on the combined four spatial statistics. 
-Here we show the 90°/90° autocorrelation portion of the first principal component. Just as in spatial statistics,the x-y coordinates still correspond to vectors, but the intensities now indicate degrees of variance over the set of images.
+Here we show the 90°/90° autocorrelation portion of the first principal component. Just as in spatial statistics, the x-y coordinates still correspond to vectors, but the intensities now indicate degrees of variance over the set of images.
 
 ![90/90 pca](https://farm8.staticflickr.com/7474/15806779299_4c2ab7d112_o.png) 
 
 We find that the zero vector varies the most over the image set. This is the area fraction of 90° fibers. We also find that vertically oriented vectors vary a lot over the image set. This is indicative of fiber length. 
-We find that spatial statistics combined with PCA objectivly identified fiber length as a key feature of the dataset. 
+We find that spatial statistics combined with PCA objectively identified fiber length as a key feature of the dataset. 
 
 We can now analyze the data in Principle Component (PC) state as shown below. 
 
@@ -165,22 +180,27 @@ PCs 1 and 2 seem to capture some combination of fiber length, density, and thick
 
 #The Structure-Property Relationship
 Multiple regression of measured mobilities (Y) vs. scores in the first four PCs (X) was performed to obtain µ = f( structure )
+The cross variance mean average error is shown in the table below for range of polynomial order and principle components. 
 
-The Error is shown below:
-A second order 
+![eror](https://farm9.staticflickr.com/8611/15813389377_d0fe23e6a5_o.png)
+
+The best fit was obtained based the results of the above Leave-One-Out Cross Validation error to be a 2nd order polynomial in first two PC scores. 
+
+µ = B0 +B1 x PC1 score + B2 x PC2 score + B3 x PC1 Score x PC2 score + B4 x PC1 score ^2 + B5 x PC2 score ^2
+
+where B = [-0.0003;0.0007;2.13e-05;0.0336;2.82e-05;-6.77e-05]
+
+A similar approach was used to determine the best fit for mobility vs fiber length. 
+The plot below shows predicted mobility (using PCs and Fiber Length ) vs measured mobility for all devices studied. 
+
 ![fit](https://farm9.staticflickr.com/8612/15806779489_d738536bc8_o.png)
 
+We find that while fiber length can be used to predict mobility, a structure-property relationship based on spatial statistics performs especially well on high-mobility devices.
+However, this method fails for devices with high area fraction, non-fibrilar samples. 
 
+![failed](https://farm9.staticflickr.com/8678/15997231861_a7be7bf0d3_b.jpg)
 
-0.441473538373014	0.400925392484600	0.451101882491112	0.710999622309185
-0.472392324424865	0.449128898388702	4.29809703920899	484.549367781368
-0.481564988163428	2.00021596392623	Inf	Inf
-0.533844909529042	8.00845949780561	Inf	Inf
-
-For fiber length a second degree polynomial showed lowest cross validated error based on leave one out method 
-
--0.0029+0.1027 x FL + 
-
+#Summary 
 
 
 
