@@ -105,5 +105,13 @@ Overlapping fiber, especially those in completely different directions will cont
 
 ![orientation issue](https://farm6.staticflickr.com/5609/14974332554_0d084b46e6_o.png)
 
-Is issue is primarily caussed by insuffient thresholding. Attempts were made to separate such connected fiber using tools like [erode](http://www.mathworks.com/help/images/ref/imerode.html) in matlab. We also attempted to identify orientation despite the connectivity using [Hough Transformations](http://matlab.izmiran.ru/help/toolbox/images/enhanc11.html).Both attempts were unsucsesful.
+Is issue is primarily caussed by insuffient thresholding. Attempts were made to separate such connected fiber using tools like [erode](http://www.mathworks.com/help/images/ref/imerode.html) in matlab. We also attempted to identify orientation despite the connectivity using [hough transformations](http://matlab.izmiran.ru/help/toolbox/images/enhanc11.html).Both attempts were unsucsesful.
 
+##Orientation Informed Fiber Identification 
+The final and most successful attempt at image segmentation combined all lessons learned from previous attempts. 
+The algorithm involves applying a range of threshold values to a single image. For each thresholded image, two matrices were calculated. The values in the matracies corescpond to pixles in the image.
+The first matrix identified the oreintation of the fibers. The second matrix identified the condifence with which the orientations belong to a fibular region. 
+To calculate these matracies, for each pixle, if the pixle was apart of a connected component, regionprops was used to fit an ellipse to the connected component. The vector associated with the major axis of the elipise was used to determine orientation. The eccentricity of the ellipse, defined as the ratio of the major axis to the minor axis, to determine the extent to which the region was fiberlike. The higher the ecentricity, the more likely that the region was a fiber. 
+This portion of the algorithm is summerized in the figures below.
+![orientation algo1](https://farm8.staticflickr.com/7564/15805516720_d517bdaf26_b.jpg)
+![orientation algo2](https://farm8.staticflickr.com/7541/15990800091_a4ca49f3c9_b.jpg)
