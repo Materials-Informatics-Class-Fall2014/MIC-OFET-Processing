@@ -46,11 +46,29 @@ P3HT forms nanofibers during processing whose lengths correspond to the (0 1 0)/
 
 ![fibers](https://farm8.staticflickr.com/7476/15992779925_637ea620f4_b.jpg)
 
-[The Reichmanis Group](http://reichmanis.chbe.gatech.edu/research.html) in ChBE performs studies on P3HT structure evolution during processing. They have a substantial collection of Atomic Force Microscopy (AFM) data paired with field-effect mobility measurements for P3HT thin film at a wide range of processing conditions.
 
 #Goal
 Our goal is to quantify the strucutre at top layer of the P3HT thin films, as represented by AFM images and to construct structure-property relationship µ = f(microstructure), where µ is electron hole mobility. 
 
 ![function](https://farm8.staticflickr.com/7570/15967017196_7327903159_o.png)
 
+#Data 
+[The Reichmanis Group](http://reichmanis.chbe.gatech.edu/research.html) in ChBE performs studies on P3HT structure evolution during processing. They have a substantial collection of Atomic Force Microscopy (AFM) data paired with field-effect mobility measurements for P3HT thin film at a wide range of processing conditions.
+Twenty such AFM images and their paired mobilities will be used for this study. 
+
+![data](https://lh3.googleusercontent.com/-XLh4YvT_WaQ/VAaAmALDQUI/AAAAAAAAAX4/BuzdJgYV6EI/w2228-h1188-no/Figure%2B2b.jpg)
+
+#Approach
+Simply by inspection, we can choose to regress against average fiber length and obtain a fit with a 2nd order polynomial.(Detailed for obtained the fiber lengths will be discussed in more detail in the method section) 
+
+![fiber length fit](https://farm8.staticflickr.com/7549/15967017276_520c3dc972_o.png)
+
+However, many more potentially important features exist:
+	- Orientation
+	- Area fraction
+	- Fiber density
+
+Therefore we needed a systematic method of selecting the most relevant features. To do this we: 
+1. Compute spatial statistics for each image in a dataset. Spacital statistics exhaustively generates a vector of microstructural features
+2. Perform dimensionality reduction to determine the most informative spatial statistics. Dimensionality reduction was done with Principal component analysis (PCA) which determines linear combinations of spatial statistics that capture the most morphological variation.
 
