@@ -135,6 +135,40 @@ More details about the algorith can be found at its [original post](http://imper
 
 #Spatial Statistics 
 
+The range of orientations found for the fibers in each microstructure were binned into five states as shown below.
+
+![binning](https://farm9.staticflickr.com/8609/15992779725_dc3a3d37b9_b.jpg)
+![binning2](https://farm8.staticflickr.com/7530/15807056707_38ba00fb2a_o.png)
+
+With five possible microstates ( 90 degrees, 45 degrees, -45 degrees, 0 degrees, amorphous), the spatial statistics matrix is 5x5, where each matrix value represents a matrix of either autocorrelation or crosscorelation of microstates. 
+
+![ss matrix](https://farm8.staticflickr.com/7473/15370533734_2b11e286c9_b.jpg)
+
+However, only four of the correlations are independent. Therefore, ee generate these four spatial statistic matrices for all of our images. 
+
+this is where we put some spatial stats and analyze it. 
+
+#Dimentionality Reduction 
+Principle Component Analysis (PCA) was performed on the combined four spatial statistics. 
+Here we show the 90°/90° autocorrelation portion of the first principal component. Just as in spatial statistics,the x-y coordinates still correspond to vectors, but the intensities now indicate degrees of variance over the set of images.
+
+![90/90 pca](https://farm8.staticflickr.com/7474/15806779299_4c2ab7d112_o.png) 
+
+We find that the zero vector varies the most over the image set. This is the area fraction of 90° fibers. We also find that vertically oriented vectors vary a lot over the image set. This is indicative of fiber length. 
+We find that spatial statistics combined with PCA objectivly identified fiber length as a key feature of the dataset. 
+
+We can now analyze the data in Principle Component (PC) state as shown below. 
+
+![PC space](https://farm8.staticflickr.com/7525/15992780025_f90cca6c1c_b.jpg) 
+
+PCs 1 and 2 seem to capture some combination of fiber length, density, and thickness.
+
+#The Structure-Property Relationship
+Multiple regression of measured mobilities (Y) vs. scores in the first four PCs (X) was performed to obtain µ = f( structure )
+
+
+
+
 
 
 
