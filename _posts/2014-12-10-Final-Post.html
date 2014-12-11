@@ -98,3 +98,12 @@ For details on the algorithm, see the [Thresholding Post](http://imperssonator.g
 Although an improvment on the first thresholding effort, this algorithm still used a single threshold value for each image. A single value threshold method fails because the pixle intensities associated with a fiber vary even across single AFM image.  
 
 ##Determining Fiber Orientaion 
+[regionprops](http://www.mathworks.com/help/images/ref/regionprops.html#bqkf8ik) was used to fit an ellipse to each connected component obtained from the previous thresholding to determine the orientation of that fiber.
+To see a proof of concept for this method visit the [Fiber Orientation Post](http://imperssonator.github.io/MIC-OFET-Processing/2014/10/21/Fiber-orientation.html)
+
+Overlapping fiber, especially those in completely different directions will contaminate the orientation calculation. The image below shows a case where the ellipse fit to the connected component in green will chose the green vector to calculate the orientation of the fiber. This orientation is incorrect for both fibers.
+
+![orientation issue](https://farm6.staticflickr.com/5609/14974332554_0d084b46e6_o.png)
+
+Is issue is primarily caussed by insuffient thresholding. Attempts were made to separate such connected fiber using tools like [erode](http://www.mathworks.com/help/images/ref/imerode.html) in matlab. We also attempted to identify orientation despite the connectivity using [Hough Transformations](http://matlab.izmiran.ru/help/toolbox/images/enhanc11.html).Both attempts were unsucsesful.
+
