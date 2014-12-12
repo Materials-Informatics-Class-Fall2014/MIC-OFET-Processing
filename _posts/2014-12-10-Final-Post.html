@@ -29,7 +29,7 @@ references:
 
 In order to reliably fabricate organic electronic devices, we must understand the quantitative relationship between their structure and their electronic properties. One widely studied system is that of poly-3-hexylthiophene (P3HT), a solution-processable polymeric semiconductor, and its charge carrier mobility in field effect transistors.
 
-P3HT has a backbone with good hole conductor properties and side chains at hat make it soluble in organic solvents. 
+P3HT has a backbone with good hole conductor properties and side chains that make it soluble in organic solvents. 
 
 ![P3HT](https://farm8.staticflickr.com/7520/15806386447_0f89739507_b.jpg)
 
@@ -39,18 +39,18 @@ The crystal structure of P3HT has been thoroughly established in the extensive l
 
 (a) (1 0 0) direction: alkyl stacking; (0 1 0): pi-stacking; (0 0 1): chain backbone (b) Face-on orientation, (c) edge-on orientation
 
-Molecular Dynamics Simulations depict the ideal alkyl and pi-stacking conformations. Charge transport is fastest along the extended chain backbone (0 0 1) and pi-stacked directions (0 1 0). It is almost negligible in the alkyl stacking direction. However, the measured hole mobility of a macro-scale film is orders of magnitude lower than that of the crystalline state.
+Molecular Dynamics Simulations depict the ideal alkyl and pi-stacking conformations. Charge transport is fastest along the extended chain backbone (0 0 1) and pi-stacked directions (0 1 0). It is almost negligible for the purposes of this study, where our data is 2-dimensional. However, the measured hole mobility of a macro-scale film is usually orders of magnitude lower than that of the crystalline state.
 
 ![stacking](https://farm9.staticflickr.com/8587/15992779985_305e514d09_b.jpg)
 
-P3HT forms nanofibers during processing whose lengths correspond to the (0 1 0)/pi-stacking direction. The nanofibers are apparent the solid state in the Atomic Force Microscopy (AFM) images:
+P3HT forms nanofibers during processing whose lengths correspond to the (0 1 0)/pi-stacking direction. The nanofibers register as regions with greater hardness/crystallinity in tapping-mode Atomic Force Microscopy (AFM) images:
 
 ![fibers](https://farm8.staticflickr.com/7476/15992779925_637ea620f4_b.jpg)
 
 
 #Goal
 
-Our goal is to quantify the structure at top layer of the P3HT thin films, as represented by AFM images and to construct structure-property relationship µ = f(microstructure), where µ is electron hole mobility. 
+Our goal is to quantify the structure at the top layer of the P3HT thin film transistors, as represented by AFM images and to construct structure-property relationship µ = f(microstructure), where µ is hole mobility. 
 
 ![function](https://farm8.staticflickr.com/7570/15967017196_7327903159_o.png)
 
@@ -73,17 +73,17 @@ However, many more potentially important features exist:
 	- Fiber density
 
 Therefore we needed a systematic method of selecting the most relevant features. To do this we: 
-1. Compute spatial statistics for each image in a dataset. Spatial statistics exhaustively generates a vector of microstructural features
-2. Perform dimensionality reduction to determine the most informative spatial statistics. Dimensionality reduction was done with Principal component analysis (PCA) which determines linear combinations of spatial statistics that capture the most morphological variation.
+1. Compute spatial statistics for each image in a dataset. Spatial statistics exhaustively generates microstructural features as a matrix of 2-point correlations.
+2. Perform dimensionality reduction to determine the most informative spatial statistics. Dimensionality reduction was done with Principal component analysis (PCA), which determines linear combinations of spatial statistics that capture the most morphological variation.
 
-It is suspected based on literature that the microstates should identify whether a local state is amorphous or a fiber and if a fiber, it should identify the orientations of fiber. 
+It is suspected based on literature that the microstates should identify whether a local state is amorphous or a fiber, and if a fiber, it should identify the orientation of that fiber. 
 Therefore, to perform spatial statistics for each image we must first develop a method to identify fibers and their orientation. 
 This can be done through image segmentation
 
 #Image Segmentation 
 
 ##Single Value Threshold Based Visual Inspection 
-In our first attempt at image segmentation, we applied a single threshold to greyscale of AFM images. The value for this threshold was chosen based on a guess and check by visual inspection. This game a rough distinction between fibular and amorphous regions. 
+In our first attempt at image segmentation, we applied a single threshold to greyscale of AFM images. The value for this threshold was chosen based on a guess and check by visual inspection. This gave a rough distinction between fibrilar and amorphous regions. 
 We then performed spatial statistics on the black and white segmented images and validated our understanding of the spatial statistics algorithm provided to the class by Tony Fast. 
 Details about this initial investigation can be followed at the [Spatial Statistics Post](http://imperssonator.github.io/MIC-OFET-Processing/2014/09/29/Spatial-Statistics.html) 
 
@@ -102,17 +102,17 @@ Although an improvement on the first thresholding effort, this algorithm still u
 [regionprops](http://www.mathworks.com/help/images/ref/regionprops.html#bqkf8ik) was used to fit an ellipse to each connected component obtained from the previous thresholding to determine the orientation of that fiber.
 To see a proof of concept for this method visit the [Fiber Orientation Post](http://imperssonator.github.io/MIC-OFET-Processing/2014/10/21/Fiber-orientation.html)
 
-Overlapping fiber, especially those in completely different directions will contaminate the orientation calculation. The image below shows a case where the ellipse fit to the connected component in green will chose the green vector to calculate the orientation of the fiber. This orientation is incorrect for both fibers.
+Overlapping fiber, especially those in completely different directions will contaminate the orientation calculation. The image below shows a case where the ellipse fit to the connected component in green will choose the green vector to calculate the orientation of the fiber. This orientation is incorrect for both fibers.
 
 ![orientation issue](https://farm6.staticflickr.com/5609/14974332554_0d084b46e6_o.png)
 
-Is issue is primarily caused by insufficient thresholding. Attempts were made to separate such connected fiber using tools like [erode](http://www.mathworks.com/help/images/ref/imerode.html) in matlab. We also attempted to identify orientation despite the connectivity using [hough transformations](http://matlab.izmiran.ru/help/toolbox/images/enhanc11.html).Both attempts were unsuccessful.
+This issue is primarily caused by insufficient thresholding. Attempts were made to separate such connected fibers using tools like [erode](http://www.mathworks.com/help/images/ref/imerode.html) in matlab. We also attempted to identify orientation despite the connectivity using [hough transformations](http://matlab.izmiran.ru/help/toolbox/images/enhanc11.html). Both attempts were unsuccessful.
 
 ##Orientation Informed Fiber Identification 
 The final and most successful attempt at image segmentation combined all lessons learned from previous attempts. 
 The algorithm involves applying a range of threshold values to a single image. For each thresholded image, two matrices were calculated. The values in the matrices correspond to pixels in the image.
 The first matrix identified the orientation of the fibers. The second matrix identified the confidence with which the orientations belong to a fibular region. 
-To calculate these matrices, for each pixel, if the pixel was apart of a connected component, regionprops was used to fit an ellipse to the connected component. The vector associated with the major axis of the ellipse was used to determine orientation. The eccentricity of the ellipse, defined as the ratio of the major axis to the minor axis, to determine the extent to which the region was fiber like. The higher the eccentricity, the more likely that the region was a fiber. 
+To calculate these matrices, for each pixel, if the pixel was a part of a connected component, regionprops was used to fit an ellipse to the connected component. The vector associated with the major axis of the ellipse was used to determine orientation. The eccentricity of the ellipse, defined as the ratio of the major axis to the minor axis, to determine the extent to which the region was fiber like. The higher the eccentricity, the more likely that the region was a fiber. 
 This portion of the algorithm is summarized in the figures below.
 ![orientation algo1](https://farm8.staticflickr.com/7564/15805516720_d517bdaf26_b.jpg)
 ![orientation algo2](https://farm8.staticflickr.com/7541/15990800091_a4ca49f3c9_b.jpg)
@@ -143,18 +143,18 @@ The range of orientations found for the fibers in each microstructure were binne
 ![binning](https://farm9.staticflickr.com/8609/15992779725_dc3a3d37b9_b.jpg)
 ![binning2](https://farm8.staticflickr.com/7530/15807056707_38ba00fb2a_o.png)
 
-With five possible microstates ( 90 degrees, 45 degrees, -45 degrees, 0 degrees, amorphous), the spatial statistics matrix is 5x5, where each matrix value represents a matrix of either autocorrelation or cross correlation of microstates. 
+With five possible microstates ( 90 degrees, 45 degrees, -45 degrees, 0 degrees, amorphous), the spatial statistics matrix is 5x5, where each entry represents a matrix of either autocorrelation or cross correlation of microstates. 
 
 ![ss matrix](https://farm8.staticflickr.com/7473/15370533734_2b11e286c9_b.jpg)
 
-However, only four of the correlations are independent. Therefore, ee generate these four spatial statistic matrices for all of our images. 
+However, only four of the correlations are independent. Therefore, we generate these four spatial statistic matrices for all of our images. 
 
 The plot below shows the spatial statistics for a 90 degree, 90 degree oriented fiber autocorrelation for a single AFM image. 
 
 ![9090ss](https://farm8.staticflickr.com/7535/15811747290_dbba2d125d_b.jpg)
 
 The highest intensity of 0.08 indicates that for this particular device, the area fraction of vertically oriented fibers is 8%. The green arrows on the AFM image show a few of these vertically oriented fibers. 
-The light blue color on the spatial statistics heat map corresponds to 3%, indicating that 3% of vectors [55,0] have both their head and tail in a fiber. 
+The light blue color on the spatial statistics heat map corresponds to 3%, indicating that 3% of vectors [0,55] have both their head and tail in a fiber. 
 
 The plot below shows the spatial statistics for a 90 degree, 90 degree oriented fiber autocorrelation for a different AFM image.
 
@@ -181,7 +181,7 @@ PCs 1 and 2 seem to capture some combination of fiber length, density, and thick
 
 #The Structure-Property Relationship
 Multiple regression of measured mobilities (Y) vs. scores in the first four PCs (X) was performed to obtain µ = f( structure )
-The cross variance mean average error is shown in the table below for range of polynomial order and principle components. 
+The cross-validated mean average error (CVMAE) is shown in the table below for range of polynomial order and principle components. 
 
 ![eror](https://farm9.staticflickr.com/8611/15813389377_d0fe23e6a5_o.png)
 
@@ -234,6 +234,12 @@ Dalar Nazarian:
 -Maintaining group website and preparing posts.
 
 #Summary 
+
+* A robust image segmentation procedure was developed for AFM tapping-mode data
+* Spatial statistics objectively identified features that we knew to be important, along with others that were not readily apparent
+* We learned that our fibers tend to come in clumps, which provided valuable information about the underlying polymers' morphology
+* Our analysis yielded a predictive structure-property relationship from AFM data for electronic properties, something that has not been thoroughly quantified in the past
+* The class has also informed our future experimental design. Future work is anticipated to include local structure and property measurement through AFM at higher resolutions and with more samples per device.
 
 
 
