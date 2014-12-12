@@ -20,7 +20,12 @@ tags:
 
 # Refences
 references:
--  
+-  J. A. Lim, F. Liu, S. Ferdous, M. Muthukumar, and A. L. Briseno, Mater. Today, 2010, 13, 14–24.
+-  R. Noriega, J. Rivnay, K. Vandewal, F. P. V Koch, N. Stingelin, P. Smith, M. F. Toney, and A. Salleo, Nat. Mater., 2013, 12, 1038–44.
+-  S. Himmelberger, K. Vandewal, Z. Fei, M. Heeney, and A. Salleo, Macromolecules, 2014, 47, 7151–7157.
+-  Y.-K. Lan and C.-I. Huang, J. Phys. Chem. B, 2009, 113, 14555–64.
+-  J.-C. Bolsée, W. D. Oosterbaan, L. Lutsen, D. Vanderzande, and J. Manca, Adv. Funct. Mater., 2013, 23, 862–869. 
+
 ---
 
 #Motivation 
@@ -73,9 +78,7 @@ However, many more potentially important features exist:
 	- Fiber density
 
 Therefore we needed a systematic method of selecting the most relevant features. To do this we: 
-
 1. Compute spatial statistics for each image in a dataset. Spatial statistics exhaustively generates microstructural features as a matrix of 2-point correlations.
-
 2. Perform dimensionality reduction to determine the most informative spatial statistics. Dimensionality reduction was done with Principal component analysis (PCA), which determines linear combinations of spatial statistics that capture the most morphological variation.
 
 It is suspected based on literature that the microstates should identify whether a local state is amorphous or a fiber, and if a fiber, it should identify the orientation of that fiber. 
@@ -131,7 +134,7 @@ The algorithm works even for excessively noisy images such as:
 ![noisy ex](https://farm8.staticflickr.com/7504/15808990007_3217c39141_b.jpg)
 
 The final result can be used to determine useful features of the microstructure such as average fiber length. 
-Other informative insights can be gained from visualization of fiber orientation. For example, the image below shows that fibers tend to form in clumps of three or four and have long range order.
+Other informative insights can be gained from visualization of fiber orientation. For example, the image below shows that fibers tend to form in clumps of 3 or four and have long range order.
 ![clumping img](https://farm8.staticflickr.com/7533/15992780165_8137b9e2fd_b.jpg)
 
 More details about the algorithm can be found at its [original post](http://imperssonator.github.io/MIC-OFET-Processing/2014/11/12/Orientation.html).
@@ -227,15 +230,13 @@ For efficiency, tasks were often performed separately and communicated with emai
 ###Main Responsibilities
 Nils Persson :
 
-- Writing, debugging and polishing final codes used for data analysis. 
-
-- Gather experimental results from collaborator. 
+-Writing, debugging and polishing final codes used for data analysis. 
+-Gather experimental results from collaborator. 
 
 Dalar Nazarian:
 
-- Experimenting with alternative algorithms. 
-
-- Maintaining group website and preparing posts.
+-Experimenting with alternative algorithms. 
+-Maintaining group website and preparing posts.
 
 #Summary 
 
